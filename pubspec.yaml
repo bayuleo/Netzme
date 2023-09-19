@@ -1,0 +1,28 @@
+name: boiler_plate_getx
+version: 1.0.0+1
+publish_to: none
+description: A new Flutter project.
+environment: 
+  sdk: '>=3.0.6 <4.0.0'
+
+dependencies: 
+  cupertino_icons: ^1.0.2
+  get: 4.6.5
+  dio: 5.3.2
+  pretty_dio_logger: 1.3.1
+  intl: ^0.18.1
+  json_to_model: ^3.2.4
+  quiver: ^3.2.1
+  hive: 2.2.3
+  hive_flutter: 1.1.0
+  flutter: 
+    sdk: flutter
+
+dev_dependencies: 
+  flutter_lints: 2.0.3
+  flutter_test: 
+    sdk: flutter
+
+flutter: 
+  uses-material-design: true
+
