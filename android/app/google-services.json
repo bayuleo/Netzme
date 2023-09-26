@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "192805094338",
+    "project_id": "netzme-e435c",
+    "storage_bucket": "netzme-e435c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:192805094338:android:0753e9be86972e4cb20c5b",
+        "android_client_info": {
+          "package_name": "com.bayuleo.netzme.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBeva43_In16U94gncdDBHCfxtVnAK31OA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

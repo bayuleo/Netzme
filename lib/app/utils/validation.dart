@@ -48,11 +48,11 @@ mixin class Validation {
     }
   }
 
-  String? nameRequired(String? name) {
+  String? valueRequired(String? name) {
     if (name == null) {
-      return 'Nama wajib diisi';
+      return 'Wajib diisi';
     } else if (name.isEmpty) {
-      return 'Nama tidak boleh kosong';
+      return 'Tidak boleh kosong';
     } else {
       return null;
     }

@@ -1,4 +1,4 @@
-package com.bayuleo.getx.boiler_plate_getx
+package com.bayuleo.netzme.app
 
 import io.flutter.embedding.android.FlutterActivity
 
