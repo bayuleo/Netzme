@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'package:boiler_plate_getx/app/data/model/index.dart';
+import 'package:boiler_plate_getx/app/data/model/param_register.dart';
 import 'package:boiler_plate_getx/app/data/model/response_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -10,6 +12,8 @@ abstract class AuthDataSource {
     required String email,
     required String password,
   });
+
+  Future<ResponseGeneral> register(ParamRegister param);
 }
 
 class AuthDataSourceImpl implements AuthDataSource {
@@ -42,6 +46,23 @@ class AuthDataSourceImpl implements AuthDataSource {
       return ResponseAuth(isSuccess: false, message: e.message ?? 'Unknown');
     } on TimeoutException {
       return const ResponseAuth(
+          isSuccess: false, message: 'Connection time out');
+    }
+  }
+
+  @override
+  Future<ResponseGeneral> register(ParamRegister param) async {
+    try {
+      await collection.add(param.toJson()).timeout(
+            const Duration(
+              seconds: 5,
+            ),
+          );
+      return const ResponseGeneral(isSuccess: true, message: 'Success');
+    } on FirebaseException catch (e) {
+      return ResponseGeneral(isSuccess: false, message: e.message ?? 'Unknown');
+    } on TimeoutException {
+      return const ResponseGeneral(
           isSuccess: false, message: 'Connection time out');
     }
   }

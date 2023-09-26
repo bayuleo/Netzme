@@ -1,6 +1,8 @@
 import 'package:boiler_plate_getx/app/data/local/auth_local_data_source.dart';
+import 'package:boiler_plate_getx/app/data/model/param_register.dart';
 import 'package:boiler_plate_getx/app/data/model/response_auth.dart';
 import 'package:boiler_plate_getx/app/data/model/response_auth_data.dart';
+import 'package:boiler_plate_getx/app/data/model/response_general.dart';
 import 'package:boiler_plate_getx/app/data/remote/auth_data_source.dart';
 import 'package:get/get.dart';
 
@@ -12,6 +14,7 @@ abstract class AuthRepository {
     required String email,
     required String password,
   });
+  Future<ResponseGeneral> register(ParamRegister param);
 }
 
 class AuthRepositoryImpl implements AuthRepository {
@@ -37,5 +40,10 @@ class AuthRepositoryImpl implements AuthRepository {
   Future<ResponseAuth> login(
       {required String email, required String password}) {
     return _authRemoteDataSource.login(email: email, password: password);
+  }
+
+  @override
+  Future<ResponseGeneral> register(ParamRegister param) {
+    return _authRemoteDataSource.register(param);
   }
 }

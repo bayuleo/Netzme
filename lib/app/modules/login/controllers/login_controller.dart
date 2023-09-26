@@ -28,6 +28,10 @@ class LoginController extends GetxController {
     super.onClose();
   }
 
+  void onClickRegister() {
+    Get.toNamed(Routes.REGISTER);
+  }
+
   void onClickLogin() {
     FocusScope.of(Get.context!).unfocus();
     if (loginKey.currentState!.validate()) {

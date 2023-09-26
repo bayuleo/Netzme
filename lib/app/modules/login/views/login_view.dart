@@ -11,10 +11,6 @@ class LoginView extends GetView<LoginController> with Validation {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('LoginView'),
-        centerTitle: true,
-      ),
       body: SingleChildScrollView(
         child: GestureDetector(
           behavior: HitTestBehavior.translucent,
@@ -71,6 +67,38 @@ class LoginView extends GetView<LoginController> with Validation {
                       controller.onClickLogin();
                     },
                     child: const Text('Login'),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  const Row(
+                    children: [
+                      Flexible(child: Divider()),
+                      SizedBox(
+                        width: 12,
+                      ),
+                      Text(
+                        'OR',
+                        style: TextStyle(color: shadowColor),
+                      ),
+                      SizedBox(
+                        width: 12,
+                      ),
+                      Flexible(child: Divider()),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: primaryColor,
+                      minimumSize: const Size.fromHeight(50),
+                    ),
+                    onPressed: () {
+                      controller.onClickRegister();
+                    },
+                    child: const Text('Register'),
                   ),
                 ],
               ),
