@@ -1,4 +1,5 @@
 import 'package:boiler_plate_getx/app/modules/home/views/widgets/drawer_widget.dart';
+import 'package:boiler_plate_getx/app/utils/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -59,6 +60,7 @@ class HomeView extends GetView<HomeController> {
         return BottomNavigationBar(
           currentIndex: controller.selectedScreen,
           onTap: controller.onTapBottomMenu,
+          selectedItemColor: primaryColor,
           items: const [
             BottomNavigationBarItem(
               label: 'Yesterday',

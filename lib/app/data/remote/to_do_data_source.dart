@@ -6,7 +6,7 @@ import 'package:intl/intl.dart';
 
 abstract class ToDoDataSource {
   Future<ResponseGeneral> addData(ParamToDo param);
-  Future<ResponseListToDo> getData();
+  Future<ResponseListToDo> getData(String userEmail);
   Future<ResponseGeneral> updateData(ResponseToDo param);
   Future<ResponseGeneral> deleteData(ResponseToDo param);
 }
@@ -33,11 +33,12 @@ class ToDoDataSourceImpl implements ToDoDataSource {
   }
 
   @override
-  Future<ResponseListToDo> getData() async {
+  Future<ResponseListToDo> getData(String userEmail) async {
     try {
       var responseToday = await collection
           .where("time",
               isEqualTo: DateFormat('dd-MM-yyyy').format(DateTime.now()))
+          .where("email", isEqualTo: userEmail)
           .get()
           .timeout(
             const Duration(
@@ -53,6 +54,7 @@ class ToDoDataSourceImpl implements ToDoDataSource {
           .where("time",
               isEqualTo: DateFormat('dd-MM-yyyy')
                   .format(DateTime.now().add(const Duration(days: -1))))
+          .where("email", isEqualTo: userEmail)
           .get()
           .timeout(
             const Duration(
@@ -68,6 +70,7 @@ class ToDoDataSourceImpl implements ToDoDataSource {
           .where("time",
               isEqualTo: DateFormat('dd-MM-yyyy')
                   .format(DateTime.now().add(const Duration(days: 1))))
+          .where("email", isEqualTo: userEmail)
           .get()
           .timeout(
             const Duration(
@@ -104,11 +107,12 @@ class ToDoDataSourceImpl implements ToDoDataSource {
           .doc(param.id)
           .update(
             ParamToDo(
-              title: param.title,
-              time: param.time,
-              desc: param.desc,
-              complete: param.complete,
-            ).toJson(),
+                    title: param.title,
+                    time: param.time,
+                    desc: param.desc,
+                    complete: param.complete,
+                    email: param.email)
+                .toJson(),
           )
           .timeout(
             const Duration(

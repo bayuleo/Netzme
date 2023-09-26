@@ -1,4 +1,3 @@
-import 'package:boiler_plate_getx/app/core/widgets/button_widget.dart';
 import 'package:boiler_plate_getx/app/core/widgets/text_field_widget.dart';
 import 'package:boiler_plate_getx/app/utils/theme.dart';
 import 'package:boiler_plate_getx/app/utils/validation.dart';
@@ -13,6 +12,7 @@ class RegisterView extends GetView<RegisterController> with Validation {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: primaryColor,
         title: const Text('RegisterView'),
         centerTitle: true,
       ),
@@ -28,6 +28,7 @@ class RegisterView extends GetView<RegisterController> with Validation {
                     label: 'Name',
                     controller: controller.nameController,
                     validator: valueRequired,
+                    keyboardType: TextInputType.text,
                   ),
                   const SizedBox(
                     height: 32,
@@ -36,6 +37,7 @@ class RegisterView extends GetView<RegisterController> with Validation {
                     label: 'Email',
                     controller: controller.emailController,
                     validator: emailRequired,
+                    keyboardType: TextInputType.emailAddress,
                   ),
                   const SizedBox(
                     height: 32,
@@ -44,6 +46,12 @@ class RegisterView extends GetView<RegisterController> with Validation {
                     label: 'Password',
                     controller: controller.passController,
                     validator: passwordRequired,
+                    obsecure: controller.isShowPassword,
+                    rightIcon: controller.isShowPassword
+                        ? const Icon(Icons.visibility)
+                        : const Icon(Icons.visibility_off),
+                    onTapRightIcon: controller.onClickShowPassword,
+                    keyboardType: TextInputType.text,
                   ),
                   const SizedBox(
                     height: 32,
@@ -55,13 +63,23 @@ class RegisterView extends GetView<RegisterController> with Validation {
                       value,
                       controller.passController.text.trim(),
                     ),
+                    obsecure: controller.isShowRePassword,
+                    rightIcon: controller.isShowRePassword
+                        ? const Icon(Icons.visibility)
+                        : const Icon(Icons.visibility_off),
+                    onTapRightIcon: controller.onClickShowRePassword,
+                    keyboardType: TextInputType.text,
                   ),
                   const SizedBox(
                     height: 60,
                   ),
-                  ButtonWidget(
-                    text: 'Register',
-                    onClick: controller.onClickRegister,
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: primaryColor,
+                      minimumSize: const Size.fromHeight(50),
+                    ),
+                    onPressed: controller.onClickRegister,
+                    child: const Text('Register'),
                   ),
                 ],
               ),

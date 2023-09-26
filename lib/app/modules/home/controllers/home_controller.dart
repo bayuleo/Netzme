@@ -24,9 +24,9 @@ class HomeController extends GetxController {
   ResponseAuthData? authData;
 
   @override
-  void onReady() {
+  void onReady() async {
+    await getAuthData();
     getListDataToDo();
-    getAuthData();
     super.onReady();
   }
 
@@ -46,7 +46,7 @@ class HomeController extends GetxController {
   }
 
   Future<void> getListDataToDo() async {
-    ResponseListToDo res = await _repository.getData();
+    ResponseListToDo res = await _repository.getData(authData!.email);
     if (res.isSuccess) {
       listData.clear();
       listDataToday.clear();
@@ -76,6 +76,7 @@ class HomeController extends GetxController {
       time: DateHelper.getToday(),
       desc: data.desc,
       complete: false,
+      email: data.email,
     );
     updateData(newData);
   }
@@ -87,6 +88,7 @@ class HomeController extends GetxController {
       time: DateHelper.getTomorrow(),
       desc: data.desc,
       complete: false,
+      email: data.email,
     );
     updateData(newData);
   }
@@ -100,6 +102,7 @@ class HomeController extends GetxController {
         time: data.time,
         desc: data.desc,
         complete: isComplete ?? data.complete,
+        email: data.email,
       ),
     )
         .then(
@@ -131,7 +134,7 @@ class HomeController extends GetxController {
     }
   }
 
-  void getAuthData() async {
+  Future<void> getAuthData() async {
     authData = await _localStorage.getAuth();
     update();
   }

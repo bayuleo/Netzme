@@ -19,6 +19,7 @@ dependencies:
   fluttertoast: 8.2.2
   confirm_dialog: 1.0.2
   shared_preferences: 2.2.1
+  flutter_native_splash: 2.3.2
   flutter: 
     sdk: flutter
 
@@ -29,4 +30,17 @@ dev_dependencies:
 
 flutter: 
   uses-material-design: true
+  assets:
+    - assets/images/
 
+flutter_native_splash:
+  fullscreen: true
+  color: "#ffffff"
+  color_dark: "#ffffff"
+  image: "assets/images/me.png"
+  android_12:
+    color: "#ffffff"
+    color_dark: "#2E398F"
+    icon_background_color_dark: "#2E398F"
+    image: "assets/images/me.png"
+    image_dark: "assets/images/me.png"

@@ -1,7 +1,7 @@
-import 'package:boiler_plate_getx/app/core/widgets/button_widget.dart';
 import 'package:boiler_plate_getx/app/core/widgets/dropdown_field_widget.dart';
 import 'package:boiler_plate_getx/app/core/widgets/text_field_widget.dart';
 import 'package:boiler_plate_getx/app/utils/date_helper.dart';
+import 'package:boiler_plate_getx/app/utils/theme.dart';
 import 'package:boiler_plate_getx/app/utils/validation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -32,6 +32,7 @@ class DetailView extends GetView<DetailController> with Validation {
                     validator: valueRequired,
                     enabled: (controller.data?.time ?? '') !=
                         DateHelper.getYesterday(),
+                    keyboardType: TextInputType.text,
                   ),
                   SizedBox(
                     height: 20.h,
@@ -72,19 +73,24 @@ class DetailView extends GetView<DetailController> with Validation {
                     maxLines: 10,
                     enabled: (controller.data?.time ?? '') !=
                         DateHelper.getYesterday(),
+                    keyboardType: TextInputType.text,
                   ),
                   SizedBox(
                     height: 40.h,
                   ),
                   if ((controller.data?.time ?? '') !=
                       DateHelper.getYesterday())
-                    ButtonWidget(
-                      text: controller.formMode == Mode.update
-                          ? 'Update'
-                          : 'Add New Task',
-                      onClick: () {
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: primaryColor,
+                        minimumSize: const Size.fromHeight(50),
+                      ),
+                      onPressed: () {
                         controller.onClickButtonConfirm();
                       },
+                      child: controller.formMode == Mode.update
+                          ? Text('Update')
+                          : Text('Add New Task'),
                     ),
                   if (controller.formMode == Mode.update &&
                       controller.data!.time != DateHelper.getYesterday())
@@ -93,12 +99,15 @@ class DetailView extends GetView<DetailController> with Validation {
                     ),
                   if (controller.formMode == Mode.update &&
                       controller.data!.time != DateHelper.getYesterday())
-                    ButtonWidget(
-                      text: 'Remove',
-                      bgColor: Colors.red,
-                      onClick: () {
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.red,
+                        minimumSize: const Size.fromHeight(50),
+                      ),
+                      onPressed: () {
                         controller.onClickButtonRemove();
                       },
+                      child: Text('Remove'),
                     ),
                 ],
               ),

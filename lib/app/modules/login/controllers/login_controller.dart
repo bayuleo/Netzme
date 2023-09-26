@@ -12,12 +12,14 @@ class LoginController extends GetxController {
   final emailTextEditingController = TextEditingController();
   final passwordTextEditingController = TextEditingController();
 
+  bool isShowPassword = true;
+
   @override
   void onInit() async {
-    var auth = await _authRepository.getAuth();
-    if (auth != null) {
-      Get.offAllNamed(Routes.HOME);
-    }
+    // var auth = _authRepository.getAuth();
+    // if (auth != null) {
+    //   Get.offAllNamed(Routes.HOME);
+    // }
     super.onInit();
   }
 
@@ -29,7 +31,13 @@ class LoginController extends GetxController {
   }
 
   void onClickRegister() {
+    FocusScope.of(Get.context!).unfocus();
     Get.toNamed(Routes.REGISTER);
+  }
+
+  void onClickShowPassword() {
+    isShowPassword = !isShowPassword;
+    update();
   }
 
   void onClickLogin() {

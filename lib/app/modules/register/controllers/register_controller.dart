@@ -14,15 +14,8 @@ class RegisterController extends GetxController {
   var passController = TextEditingController();
   var rePassController = TextEditingController();
 
-  @override
-  void onInit() {
-    super.onInit();
-  }
-
-  @override
-  void onReady() {
-    super.onReady();
-  }
+  bool isShowPassword = true;
+  bool isShowRePassword = true;
 
   @override
   void onClose() {
@@ -33,7 +26,18 @@ class RegisterController extends GetxController {
     super.onClose();
   }
 
+  void onClickShowPassword() {
+    isShowPassword = !isShowPassword;
+    update();
+  }
+
+  void onClickShowRePassword() {
+    isShowRePassword = !isShowRePassword;
+    update();
+  }
+
   void onClickRegister() {
+    FocusScope.of(Get.context!).unfocus();
     if (registerKey.currentState!.validate()) {
       _authRepository
           .register(

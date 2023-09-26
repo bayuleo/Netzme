@@ -1,4 +1,6 @@
 import 'package:boiler_plate_getx/app/data/model/index.dart';
+import 'package:boiler_plate_getx/app/data/model/response_auth_data.dart';
+import 'package:boiler_plate_getx/app/data/repository/auth_repository.dart';
 import 'package:boiler_plate_getx/app/data/repository/to_do_repository.dart';
 import 'package:boiler_plate_getx/app/utils/snack_bar_helper.dart';
 import 'package:confirm_dialog/confirm_dialog.dart';
@@ -11,6 +13,7 @@ enum Mode { add, update }
 class DetailController extends GetxController {
   final formKey = GlobalKey<FormState>();
   final _repository = Get.find<ToDoRepository>();
+  final _localStorage = Get.find<AuthRepository>();
 
   var titleController = TextEditingController();
   var descController = TextEditingController();
@@ -18,6 +21,14 @@ class DetailController extends GetxController {
   Mode formMode = Mode.add;
   ResponseToDo? data;
   String? selectedDate;
+
+  ResponseAuthData? authData;
+
+  @override
+  void onInit() async {
+    await getLocalData();
+    super.onInit();
+  }
 
   @override
   void onReady() {
@@ -84,6 +95,7 @@ class DetailController extends GetxController {
         time: selectedDate ?? '',
         desc: descController.text.trim(),
         complete: false,
+        email: authData!.email,
       ),
     )
         .then(
@@ -107,6 +119,7 @@ class DetailController extends GetxController {
         time: selectedDate ?? '',
         desc: descController.text.trim(),
         complete: data!.complete,
+        email: data!.email,
       ),
     )
         .then(
@@ -119,5 +132,9 @@ class DetailController extends GetxController {
         }
       },
     );
+  }
+
+  Future<void> getLocalData() async {
+    authData = await _localStorage.getAuth();
   }
 }

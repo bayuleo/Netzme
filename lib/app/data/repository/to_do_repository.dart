@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 
 abstract class ToDoRepository {
   Future<ResponseGeneral> addData(ParamToDo param);
-  Future<ResponseListToDo> getData();
+  Future<ResponseListToDo> getData(String userEmail);
   Future<ResponseGeneral> updateData(ResponseToDo param);
   Future<ResponseGeneral> deleteData(ResponseToDo param);
 }
@@ -18,8 +18,8 @@ class ToDoRepositoryImpl implements ToDoRepository {
   }
 
   @override
-  Future<ResponseListToDo> getData() async {
-    return await _toDoDataSource.getData();
+  Future<ResponseListToDo> getData(String userEmail) async {
+    return await _toDoDataSource.getData(userEmail);
   }
 
   @override
