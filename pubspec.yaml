@@ -21,6 +21,7 @@ dependencies:
   control_style: 0.0.3
   flutter_svg: 2.0.7
   skeletonizer: 0.8.0
+  quiver: 3.2.1
   flutter: 
     sdk: flutter
 
