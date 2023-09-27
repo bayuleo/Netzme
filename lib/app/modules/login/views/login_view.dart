@@ -67,7 +67,9 @@ class LoginView extends GetView<LoginController> with Validation {
                       onPressed: () {
                         controller.onClickLogin();
                       },
-                      child: const Text('Login'),
+                      child: controller.isLoading
+                          ? const CircularProgressIndicator()
+                          : const Text('Login'),
                     ),
                     const SizedBox(
                       height: 20,
@@ -99,6 +101,7 @@ class LoginView extends GetView<LoginController> with Validation {
                       onPressed: () {
                         controller.onClickRegister();
                       },
+                      // child: const Text('Register'),
                       child: const Text('Register'),
                     ),
                   ],

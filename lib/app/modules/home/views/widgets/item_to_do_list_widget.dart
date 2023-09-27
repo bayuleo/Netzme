@@ -32,7 +32,7 @@ class ItemToDoListWidget extends StatelessWidget {
     return GetBuilder<HomeController>(builder: (controller) {
       return Container(
         padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 8.h),
-        margin: EdgeInsets.only(bottom: 20.h),
+        margin: EdgeInsets.only(bottom: 20.h, left: 20.w, right: 20.w),
         height: 60.h,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.all(

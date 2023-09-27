@@ -79,7 +79,9 @@ class RegisterView extends GetView<RegisterController> with Validation {
                       minimumSize: const Size.fromHeight(50),
                     ),
                     onPressed: controller.onClickRegister,
-                    child: const Text('Register'),
+                    child: controller.isLoading
+                        ? const CircularProgressIndicator()
+                        : const Text('Register'),
                   ),
                 ],
               ),

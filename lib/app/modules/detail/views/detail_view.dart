@@ -51,10 +51,6 @@ class DetailView extends GetView<DetailController> with Validation {
                               value: DateHelper.getTomorrow(),
                               child: const Text('Tomorrow'),
                             ),
-                            // DropdownMenuItem(
-                            //   value: DateHelper.getYesterday(),
-                            //   child: const Text('Yesterday'),
-                            // ),
                           ],
                           onChanged: controller.onChangeDropdown,
                         )
@@ -88,9 +84,11 @@ class DetailView extends GetView<DetailController> with Validation {
                       onPressed: () {
                         controller.onClickButtonConfirm();
                       },
-                      child: controller.formMode == Mode.update
-                          ? Text('Update')
-                          : Text('Add New Task'),
+                      child: controller.isLoadingConfirm
+                          ? const CircularProgressIndicator()
+                          : controller.formMode == Mode.update
+                              ? const Text('Update')
+                              : const Text('Add New Task'),
                     ),
                   if (controller.formMode == Mode.update &&
                       controller.data!.time != DateHelper.getYesterday())
@@ -107,7 +105,9 @@ class DetailView extends GetView<DetailController> with Validation {
                       onPressed: () {
                         controller.onClickButtonRemove();
                       },
-                      child: Text('Remove'),
+                      child: controller.isLoadingRemove
+                          ? const CircularProgressIndicator()
+                          : const Text('Remove'),
                     ),
                 ],
               ),

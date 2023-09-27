@@ -1,6 +1,7 @@
 import 'package:boiler_plate_getx/app/modules/home/views/widgets/drawer_widget.dart';
 import 'package:boiler_plate_getx/app/utils/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../../core/widgets/button_widget.dart';
@@ -24,8 +25,8 @@ class HomeView extends GetView<HomeController> {
       body: Stack(
         children: [
           Padding(
-            padding: const EdgeInsets.symmetric(
-              vertical: 20,
+            padding: EdgeInsets.only(
+              top: 20.h,
             ),
             child: GetBuilder<HomeController>(builder: (controller) {
               return IndexedStack(
@@ -41,7 +42,7 @@ class HomeView extends GetView<HomeController> {
           Align(
             alignment: Alignment.bottomRight,
             child: Padding(
-              padding: const EdgeInsets.all(20),
+              padding: EdgeInsets.all(20.w),
               child: GetBuilder<HomeController>(builder: (controller) {
                 return ButtonWidget(
                   text: 'Add Task',

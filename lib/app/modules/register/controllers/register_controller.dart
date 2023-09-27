@@ -16,6 +16,7 @@ class RegisterController extends GetxController {
 
   bool isShowPassword = true;
   bool isShowRePassword = true;
+  bool isLoading = false;
 
   @override
   void onClose() {
@@ -37,6 +38,9 @@ class RegisterController extends GetxController {
   }
 
   void onClickRegister() {
+    isLoading = true;
+    update();
+
     FocusScope.of(Get.context!).unfocus();
     if (registerKey.currentState!.validate()) {
       _authRepository
@@ -58,5 +62,8 @@ class RegisterController extends GetxController {
         },
       );
     }
+
+    isLoading = false;
+    update();
   }
 }

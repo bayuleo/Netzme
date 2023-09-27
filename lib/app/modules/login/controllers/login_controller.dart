@@ -13,6 +13,7 @@ class LoginController extends GetxController {
   final passwordTextEditingController = TextEditingController();
 
   bool isShowPassword = true;
+  bool isLoading = false;
 
   @override
   void onInit() async {
@@ -40,10 +41,13 @@ class LoginController extends GetxController {
     update();
   }
 
-  void onClickLogin() {
+  void onClickLogin() async {
+    isLoading = true;
+    update();
+
     FocusScope.of(Get.context!).unfocus();
     if (loginKey.currentState!.validate()) {
-      _authRepository
+      await _authRepository
           .login(
         email: emailTextEditingController.text.trim(),
         password: passwordTextEditingController.text.trim(),
@@ -60,5 +64,7 @@ class LoginController extends GetxController {
         },
       );
     }
+    isLoading = false;
+    update();
   }
 }

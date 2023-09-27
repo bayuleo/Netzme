@@ -24,6 +24,9 @@ class DetailController extends GetxController {
 
   ResponseAuthData? authData;
 
+  bool isLoadingConfirm = false;
+  bool isLoadingRemove = false;
+
   @override
   void onInit() async {
     await getLocalData();
@@ -76,18 +79,29 @@ class DetailController extends GetxController {
       textOK: const Text('Yes'),
       textCancel: const Text('No'),
     )) {
-      _repository.deleteData(data!).then((res) {
-        if (res.isSuccess) {
-          Fluttertoast.showToast(msg: res.message);
-          Get.back();
-        } else {
-          SnackBarHelper.showErrorSnack(message: res.message);
-        }
-      });
+      isLoadingRemove = true;
+      update();
+
+      _repository.deleteData(data!).then(
+        (res) {
+          if (res.isSuccess) {
+            Fluttertoast.showToast(msg: res.message);
+            Get.back();
+          } else {
+            SnackBarHelper.showErrorSnack(message: res.message);
+          }
+        },
+      );
+
+      isLoadingRemove = false;
+      update();
     }
   }
 
   void addNewData() {
+    isLoadingConfirm = true;
+    update();
+
     _repository
         .addData(
       ParamToDo(
@@ -108,9 +122,15 @@ class DetailController extends GetxController {
         }
       },
     );
+
+    isLoadingConfirm = false;
+    update();
   }
 
   void updateData() {
+    isLoadingConfirm = true;
+    update();
+
     _repository
         .updateData(
       ResponseToDo(
@@ -132,6 +152,9 @@ class DetailController extends GetxController {
         }
       },
     );
+
+    isLoadingConfirm = false;
+    update();
   }
 
   Future<void> getLocalData() async {
