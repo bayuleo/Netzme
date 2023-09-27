@@ -53,8 +53,8 @@ class LoginView extends GetView<LoginController> with Validation {
                       keyboardType: TextInputType.text,
                       obsecure: controller.isShowPassword,
                       rightIcon: controller.isShowPassword
-                          ? Icon(Icons.visibility)
-                          : Icon(Icons.visibility_off),
+                          ? const Icon(Icons.visibility)
+                          : const Icon(Icons.visibility_off),
                       onTapRightIcon: controller.onClickShowPassword,
                     ),
                     const SizedBox(

@@ -9,8 +9,6 @@ dependencies:
   cupertino_icons: ^1.0.2
   get: 4.6.5
   intl: ^0.18.1
-  json_to_model: ^3.2.4
-  quiver: ^3.2.1
   hive: 2.2.3
   hive_flutter: 1.1.0
   flutter_screenutil: 5.9.0
