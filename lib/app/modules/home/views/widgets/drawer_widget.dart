@@ -39,7 +39,7 @@ class DraweWidget extends StatelessWidget {
               child: Column(
                 children: [
                   SizedBox(
-                    height: 40.h,
+                    height: 60.h,
                   ),
                   Text(
                     controller.authData?.name ?? '',

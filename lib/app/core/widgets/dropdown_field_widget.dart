@@ -1,4 +1,5 @@
 import 'package:boiler_plate_getx/app/utils/theme.dart';
+import 'package:control_style/control_style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -77,48 +78,46 @@ class DropdownFieldWidget extends StatelessWidget {
             const SizedBox(
               height: 12,
             ),
-          Container(
-            decoration: const BoxDecoration(
-              boxShadow: [
-                BoxShadow(
-                  color: shadowColor,
-                  blurRadius: 8,
-                  spreadRadius: 1,
-                  offset: Offset(4, 8), // Shadow position
-                ),
-              ],
+          DropdownButtonFormField(
+            focusNode: focusNode,
+            validator: (value) => validator?.call(value),
+            onChanged: (value) => onChanged?.call(value),
+            value: value,
+            onTap: onTap,
+            style: TextStyle(
+              color: enabled ? primaryColor : Colors.grey,
+              fontSize: 14,
             ),
-            child: DropdownButtonFormField(
-              focusNode: focusNode,
-              validator: (value) => validator?.call(value),
-              onChanged: (value) => onChanged?.call(value),
-              value: value,
-              onTap: onTap,
-              style: TextStyle(
-                color: enabled ? primaryColor : Colors.grey,
-                fontSize: 14,
+            decoration: InputDecoration(
+              counterText: '',
+              isDense: true,
+              filled: true,
+              fillColor: backgroundColor ?? Colors.white,
+              contentPadding: contentPadding,
+              hintText: hint ?? label,
+              suffixIconColor: const Color(0x99000000),
+              hintStyle: TextStyle(
+                fontSize: 12.sp,
+                color: hintColor ?? shadowColor,
+                overflow: TextOverflow.ellipsis,
               ),
-              decoration: InputDecoration(
-                counterText: '',
-                isDense: true,
-                filled: true,
-                fillColor: backgroundColor ?? Colors.white,
-                contentPadding: contentPadding,
-                hintText: hint ?? label,
-                suffixIconColor: const Color(0x99000000),
-                hintStyle: TextStyle(
-                  fontSize: 12.sp,
-                  color: hintColor ?? shadowColor,
-                  overflow: TextOverflow.ellipsis,
-                ),
-                errorMaxLines: 10,
-                border: OutlineInputBorder(
+              errorMaxLines: 10,
+              border: DecoratedInputBorder(
+                child: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(radius ?? 12),
                   borderSide: BorderSide.none,
                 ),
+                shadow: const [
+                  BoxShadow(
+                    color: shadowColor,
+                    blurRadius: 8,
+                    spreadRadius: 1,
+                    offset: Offset(4, 8), // Shadow position
+                  ),
+                ],
               ),
-              items: items,
             ),
+            items: items,
           ),
         ],
       ),

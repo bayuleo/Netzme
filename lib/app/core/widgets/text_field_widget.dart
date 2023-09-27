@@ -1,4 +1,5 @@
 import 'package:boiler_plate_getx/app/utils/theme.dart';
+import 'package:control_style/control_style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -106,62 +107,60 @@ class TextFieldWidget extends StatelessWidget {
             const SizedBox(
               height: 12,
             ),
-          Container(
-            decoration: const BoxDecoration(
-              boxShadow: [
-                BoxShadow(
-                  color: shadowColor,
-                  blurRadius: 8,
-                  spreadRadius: 1,
-                  offset: Offset(4, 8), // Shadow position
-                ),
-              ],
+          TextFormField(
+            controller: controller,
+            enableSuggestions: false,
+            autocorrect: false,
+            keyboardType: keyboardType,
+            obscureText: obsecure,
+            focusNode: focusNode,
+            readOnly: readOnly,
+            minLines: minLines,
+            maxLines: maxLines,
+            autovalidateMode: autovalidateMode,
+            enabled: enabled,
+            initialValue: initialValue,
+            validator: (value) => validator?.call(value),
+            onChanged: (value) => onChangedText?.call(value),
+            onTap: onTap,
+            textInputAction: textInputAction,
+            onFieldSubmitted: (value) => onFieldSubmitted?.call(value),
+            style: TextStyle(
+              color: enabled ? primaryColor : Colors.grey,
+              fontSize: 14,
             ),
-            child: TextFormField(
-              controller: controller,
-              enableSuggestions: false,
-              autocorrect: false,
-              keyboardType: keyboardType,
-              obscureText: obsecure,
-              focusNode: focusNode,
-              readOnly: readOnly,
-              minLines: minLines,
-              maxLines: maxLines,
-              autovalidateMode: autovalidateMode,
-              enabled: enabled,
-              initialValue: initialValue,
-              validator: (value) => validator?.call(value),
-              onChanged: (value) => onChangedText?.call(value),
-              onTap: onTap,
-              textInputAction: textInputAction,
-              onFieldSubmitted: (value) => onFieldSubmitted?.call(value),
-              style: TextStyle(
-                color: enabled ? primaryColor : Colors.grey,
-                fontSize: 14,
+            inputFormatters: inputFormatter,
+            // ? Need hidden counterText when setting maxLength
+            maxLength: maxLength,
+            decoration: InputDecoration(
+              counterText: '',
+              isDense: true,
+              filled: true,
+              fillColor: backgroundColor ?? Colors.white,
+              contentPadding: contentPadding,
+              hintText: hint ?? label,
+              suffixIcon: _rightIcon(),
+              suffixIconColor: const Color(0x99000000),
+              prefixIcon: leftWidget,
+              hintStyle: TextStyle(
+                fontSize: 12.sp,
+                color: hintColor ?? shadowColor,
+                overflow: TextOverflow.ellipsis,
               ),
-              inputFormatters: inputFormatter,
-              // ? Need hidden counterText when setting maxLength
-              maxLength: maxLength,
-              decoration: InputDecoration(
-                counterText: '',
-                isDense: true,
-                filled: true,
-                fillColor: backgroundColor ?? Colors.white,
-                contentPadding: contentPadding,
-                hintText: hint ?? label,
-                suffixIcon: _rightIcon(),
-                suffixIconColor: const Color(0x99000000),
-                prefixIcon: leftWidget,
-                hintStyle: TextStyle(
-                  fontSize: 12.sp,
-                  color: hintColor ?? shadowColor,
-                  overflow: TextOverflow.ellipsis,
-                ),
-                errorMaxLines: 10,
-                border: OutlineInputBorder(
+              errorMaxLines: 10,
+              border: DecoratedInputBorder(
+                child: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(radius ?? 12),
                   borderSide: BorderSide.none,
                 ),
+                shadow: const [
+                  BoxShadow(
+                    color: shadowColor,
+                    blurRadius: 8,
+                    spreadRadius: 1,
+                    offset: Offset(4, 8), // Shadow position
+                  ),
+                ],
               ),
             ),
           ),

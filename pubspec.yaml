@@ -20,6 +20,7 @@ dependencies:
   confirm_dialog: 1.0.2
   shared_preferences: 2.2.1
   flutter_native_splash: 2.3.2
+  control_style: 0.0.3
   flutter: 
     sdk: flutter
 
@@ -29,18 +30,19 @@ dev_dependencies:
     sdk: flutter
 
 flutter: 
-  uses-material-design: true
-  assets:
+  assets: 
     - assets/images/
+  uses-material-design: true
 
-flutter_native_splash:
+flutter_native_splash: 
+  color: '#ffffff'
+  color_dark: '#ffffff'
+  image: assets/images/me.png
+  android_12: 
+    color: '#ffffff'
+    color_dark: '#2E398F'
+    icon_background_color_dark: '#2E398F'
+    image: assets/images/me.png
+    image_dark: assets/images/me.png
   fullscreen: true
-  color: "#ffffff"
-  color_dark: "#ffffff"
-  image: "assets/images/me.png"
-  android_12:
-    color: "#ffffff"
-    color_dark: "#2E398F"
-    icon_background_color_dark: "#2E398F"
-    image: "assets/images/me.png"
-    image_dark: "assets/images/me.png"
+
