@@ -13,7 +13,7 @@ class RegisterView extends GetView<RegisterController> with Validation {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: primaryColor,
-        title: const Text('RegisterView'),
+        title: const Text('Register'),
         centerTitle: true,
       ),
       body: SingleChildScrollView(

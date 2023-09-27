@@ -14,7 +14,7 @@ class SplashView extends GetView<SplashController> {
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset('assets/images/me.png'),
+            Image.asset('assets/images/icon.png'),
             const Text(
               'Task Netzme App',
               style: TextStyle(

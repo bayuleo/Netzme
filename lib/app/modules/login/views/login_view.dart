@@ -1,8 +1,8 @@
 import 'package:boiler_plate_getx/app/core/widgets/text_field_widget.dart';
 import 'package:boiler_plate_getx/app/modules/login/controllers/login_controller.dart';
 import 'package:boiler_plate_getx/app/utils/validation.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../../utils/theme.dart';
@@ -12,6 +12,7 @@ class LoginView extends GetView<LoginController> with Validation {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: GetBuilder<LoginController>(builder: (controller) {
         return SingleChildScrollView(
           child: GestureDetector(
@@ -29,9 +30,9 @@ class LoginView extends GetView<LoginController> with Validation {
                     const SizedBox(
                       height: 40,
                     ),
-                    const Icon(
-                      CupertinoIcons.info,
-                      size: 160,
+                    Image.asset(
+                      'assets/images/login_banner.png',
+                      height: 200.h,
                     ),
                     const SizedBox(
                       height: 60,

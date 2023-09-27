@@ -21,6 +21,7 @@ dependencies:
   shared_preferences: 2.2.1
   flutter_native_splash: 2.3.2
   control_style: 0.0.3
+  flutter_svg: 2.0.7
   flutter: 
     sdk: flutter
 
@@ -37,12 +38,12 @@ flutter:
 flutter_native_splash: 
   color: '#ffffff'
   color_dark: '#ffffff'
-  image: assets/images/me.png
+  image: assets/images/icon.png
   android_12: 
     color: '#ffffff'
-    color_dark: '#2E398F'
-    icon_background_color_dark: '#2E398F'
-    image: assets/images/me.png
-    image_dark: assets/images/me.png
+    color_dark: '#dfdee3'
+    icon_background_color_dark: '#dfdee3'
+    image: assets/images/icon.png
+    image_dark: assets/images/icon.png
   fullscreen: true
 
