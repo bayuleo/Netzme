@@ -1,4 +1,4 @@
-# boiler_plate_getx
+# Task Application Netzme
 
 A new Flutter project.
 
