@@ -18,6 +18,8 @@ class DetailController extends GetxController {
   var titleController = TextEditingController();
   var descController = TextEditingController();
 
+  bool isInitLoading = true;
+
   Mode formMode = Mode.add;
   ResponseToDo? data;
   String? selectedDate;
@@ -41,6 +43,7 @@ class DetailController extends GetxController {
       formMode = Mode.update;
       initFormValue();
     }
+    isInitLoading = false;
     update();
     super.onReady();
   }

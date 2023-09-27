@@ -6,6 +6,7 @@ import 'package:boiler_plate_getx/app/utils/validation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 import '../controllers/detail_controller.dart';
 
@@ -21,95 +22,99 @@ class DetailView extends GetView<DetailController> with Validation {
             padding: EdgeInsets.all(20.w),
             child: Form(
               key: controller.formKey,
-              child: Column(
-                children: [
-                  SizedBox(
-                    height: 40.h,
-                  ),
-                  TextFieldWidget(
-                    label: 'Title',
-                    controller: controller.titleController,
-                    validator: valueRequired,
-                    enabled: (controller.data?.time ?? '') !=
-                        DateHelper.getYesterday(),
-                    keyboardType: TextInputType.text,
-                  ),
-                  SizedBox(
-                    height: 20.h,
-                  ),
-                  (controller.data?.time ?? '') != DateHelper.getYesterday()
-                      ? DropdownFieldWidget(
-                          label: 'Time',
-                          validator: valueRequired,
-                          value: controller.selectedDate,
-                          items: [
-                            DropdownMenuItem(
-                              value: DateHelper.getToday(),
-                              child: const Text('Today'),
-                            ),
-                            DropdownMenuItem(
-                              value: DateHelper.getTomorrow(),
-                              child: const Text('Tomorrow'),
-                            ),
-                          ],
-                          onChanged: controller.onChangeDropdown,
-                        )
-                      : const TextFieldWidget(
-                          label: 'Time',
-                          initialValue: 'Yesterday',
-                          enabled: false,
-                        ),
-                  SizedBox(
-                    height: 20.h,
-                  ),
-                  TextFieldWidget(
-                    label: 'Description',
-                    controller: controller.descController,
-                    minLines: 8,
-                    maxLines: 10,
-                    enabled: (controller.data?.time ?? '') !=
-                        DateHelper.getYesterday(),
-                    keyboardType: TextInputType.text,
-                  ),
-                  SizedBox(
-                    height: 40.h,
-                  ),
-                  if ((controller.data?.time ?? '') !=
-                      DateHelper.getYesterday())
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: primaryColor,
-                        minimumSize: const Size.fromHeight(50),
-                      ),
-                      onPressed: () {
-                        controller.onClickButtonConfirm();
-                      },
-                      child: controller.isLoadingConfirm
-                          ? const CircularProgressIndicator()
-                          : controller.formMode == Mode.update
-                              ? const Text('Update')
-                              : const Text('Add New Task'),
+              child: Skeletonizer(
+                enabled: controller.isInitLoading,
+                containersColor: bgColor,
+                child: Column(
+                  children: [
+                    SizedBox(
+                      height: 40.h,
                     ),
-                  if (controller.formMode == Mode.update &&
-                      controller.data!.time != DateHelper.getYesterday())
+                    TextFieldWidget(
+                      label: 'Title',
+                      controller: controller.titleController,
+                      validator: valueRequired,
+                      enabled: (controller.data?.time ?? '') !=
+                          DateHelper.getYesterday(),
+                      keyboardType: TextInputType.text,
+                    ),
                     SizedBox(
                       height: 20.h,
                     ),
-                  if (controller.formMode == Mode.update &&
-                      controller.data!.time != DateHelper.getYesterday())
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.red,
-                        minimumSize: const Size.fromHeight(50),
-                      ),
-                      onPressed: () {
-                        controller.onClickButtonRemove();
-                      },
-                      child: controller.isLoadingRemove
-                          ? const CircularProgressIndicator()
-                          : const Text('Remove'),
+                    (controller.data?.time ?? '') != DateHelper.getYesterday()
+                        ? DropdownFieldWidget(
+                            label: 'Time',
+                            validator: valueRequired,
+                            value: controller.selectedDate,
+                            items: [
+                              DropdownMenuItem(
+                                value: DateHelper.getToday(),
+                                child: const Text('Today'),
+                              ),
+                              DropdownMenuItem(
+                                value: DateHelper.getTomorrow(),
+                                child: const Text('Tomorrow'),
+                              ),
+                            ],
+                            onChanged: controller.onChangeDropdown,
+                          )
+                        : const TextFieldWidget(
+                            label: 'Time',
+                            initialValue: 'Yesterday',
+                            enabled: false,
+                          ),
+                    SizedBox(
+                      height: 20.h,
                     ),
-                ],
+                    TextFieldWidget(
+                      label: 'Description',
+                      controller: controller.descController,
+                      minLines: 8,
+                      maxLines: 10,
+                      enabled: (controller.data?.time ?? '') !=
+                          DateHelper.getYesterday(),
+                      keyboardType: TextInputType.text,
+                    ),
+                    SizedBox(
+                      height: 40.h,
+                    ),
+                    if ((controller.data?.time ?? '') !=
+                        DateHelper.getYesterday())
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: primaryColor,
+                          minimumSize: const Size.fromHeight(50),
+                        ),
+                        onPressed: () {
+                          controller.onClickButtonConfirm();
+                        },
+                        child: controller.isLoadingConfirm
+                            ? const CircularProgressIndicator()
+                            : controller.formMode == Mode.update
+                                ? const Text('Update')
+                                : const Text('Add New Task'),
+                      ),
+                    if (controller.formMode == Mode.update &&
+                        controller.data!.time != DateHelper.getYesterday())
+                      SizedBox(
+                        height: 20.h,
+                      ),
+                    if (controller.formMode == Mode.update &&
+                        controller.data!.time != DateHelper.getYesterday())
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.red,
+                          minimumSize: const Size.fromHeight(50),
+                        ),
+                        onPressed: () {
+                          controller.onClickButtonRemove();
+                        },
+                        child: controller.isLoadingRemove
+                            ? const CircularProgressIndicator()
+                            : const Text('Remove'),
+                      ),
+                  ],
+                ),
               ),
             ),
           ),

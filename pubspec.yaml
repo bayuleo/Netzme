@@ -22,6 +22,7 @@ dependencies:
   flutter_native_splash: 2.3.2
   control_style: 0.0.3
   flutter_svg: 2.0.7
+  skeletonizer: 0.8.0
   flutter: 
     sdk: flutter
 

@@ -20,13 +20,16 @@ class HomeController extends GetxController {
 
   int selectedScreen = 1;
   bool checkValue = false;
+  bool isInitLoading = true;
 
   ResponseAuthData? authData;
 
   @override
   void onReady() async {
     await getAuthData();
-    getListDataToDo();
+    await getListDataToDo();
+    isInitLoading = false;
+    update();
     super.onReady();
   }
 
