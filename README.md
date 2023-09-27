@@ -20,5 +20,5 @@ samples, guidance on mobile development, and a full API reference.
 
 ## Demo APP
 
-https://github.com/bayuleo/Netzme/assets/23091351/6dcd9896-ac0c-46b8-8bbe-0077c0895c64
+https://github.com/bayuleo/Netzme/assets/23091351/d3c69349-67d3-4cd0-9c31-de20df3fa2ea
 
