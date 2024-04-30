@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Close WebView</title>
+</head>
+<body>
+    <h1>Hello, WebView!</h1>
+    <h1>Close</h1>
+    <button onclick="goBack()">Close</button>
+    <h1>Open</h1>
+    <button onclick="openLink()">Open</button>
+    
+    <script>
+        function closeWebView() {
+            // Send a message to Flutter
+            window.flutter_inappwebview.callHandler('onGoback');
+        }
+        function openLink() {
+            // Change the URL to the desired link
+            var link = "https://crimson-danette-4.tiiny.site/";
+            // Open the link in the same tab
+            window.location.href = link;
+        }
+    </script>
+</body>
+</html>
